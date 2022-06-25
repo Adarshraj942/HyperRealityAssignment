@@ -1,0 +1,32 @@
+.Menu{
+    width: 40%;
+    height: 60%;
+    border-radius: 20px;
+    background-color: var(--cardColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;
+
+}
+
+.Menu button{
+    width: 200px;
+    height: 50px;
+    margin: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+.input1 {
+	outline: none;
+	border: none;
+	width: 40%;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #edf5f3;
+	margin: 5px 0;
+	font-size: 14px;
+}
