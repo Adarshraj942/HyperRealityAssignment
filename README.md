@@ -40,11 +40,14 @@ Future Updations :
 
 <h1> How to Start <h1>
   
-  * Step 1 : Clone this repository
+  <h6>
+   * Step 1 : Clone this repository
   * Step 2 : npm install on both server and client directory
   * Step 3 : Create a .env file on the server folder and add data Which I have mailed
   * Step 4 : Split terminal
   * Step 5 : Start Server and Client using "npm start" command
+  
+  </h6>
   
   
   
