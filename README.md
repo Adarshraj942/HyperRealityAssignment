@@ -1,52 +1,50 @@
-<h1> Ecommerce website<h1>
+<h1> Rating/Survey App<h1>
   
-  <p>Frames_project is an E-commerce website that deals with selling Wall Frames.<p>
+  <p>Rating App Works inorder to get customer feed back<p>
   
   
 Technologies used :
 -----------------------
+  (MERN STACK APPLICATION)
 * JavaScript
 * Node js
-* Express js
+* React js
 * Mongo db
-* Hbs
+* Express js
 
 Features involved:
 -----------------------------------------------
-* User & Admin Authentication
-* OTP Login
-* Advanced Payment Options(RazorPay,Paypal)
+* Start app with user mobile number
+* User can see questions and options to rate as per questions
+* User can skip questions
 * Cash On Delivery
-* Image Cropping
-* High-Resolution Photos
-* Special Offers & Coupons
-* Referral System
-* Add To Cart
-* Image Zooming
-* Related Items
-* Order History
-* Wallet
-* Multiple Address Management
-* User Block/Unblock
-* Chart & Graph reports in Admin side
-* Sales Report
-* Form Validation
-* Product & Category Management in Admin side
-* User Profile
-* Order Management
-* User Management
+* if last question is not rated user can go to previous question
+* form validations
+* Data is stored on Atlas server
+* Strong Nodejs backend server
+* after 5seconds of each feedback submission return back to welcome page 
+* Responsive
+* Questions are stored and retrieved from database
+* API end points to add questions are available
 
 Future Updations :
 ----------------------------------
-* Responsive Design
+* Admin side Ui
 * SMTP-gmail send  
-* Search Items
-* Guest User
-* Google Authentication
-* Chat
-* User-Generated Reviews
-* Multi-vendor
-* Frequently Asked Questions (FAQ)
-* Filters(Colour,Brand,Seller...)
-* Return Policy
+* Search feedbacks
+* List feedbacks
+* Automated thanks message to user mobile numbers
+* Admin ui for add questions
+* Admin ui for delete questions
+* Admin ui for update questions
 
+<h1> How to Start <h1>
+  
+  * Step 1 : Clone this repository
+  * Step 2 : npm install on both server and client directory
+  * Step 3 : Create a .env file on the server folder and add data Which I have mailed
+  * Step 4 : Split terminal
+  * Step 5 : Start Server and Client using "npm start" command
+  
+  
+  
