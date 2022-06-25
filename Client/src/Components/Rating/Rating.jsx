@@ -1,23 +1,22 @@
-import React, { useState, useContext, useEffect } from "react";
-
+import React, { useState, useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import { RatingContext } from "../../Helpers/Contexts";
 import "./Rating.css";
 import swal from "sweetalert";
-
-import axios from "axios";
 import { addRating } from "../../Api/RatingRequest";
 const Rating = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [ratingPoint, setRatingPoint] = useState(0);
+  //context
   const { rating, setRating } = useContext(RatingContext);
   const { Questions, setQNA } = useContext(RatingContext);
+  //state
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [ratingPoint, setRatingPoint] = useState(0);
   const [feedBack, setFeedBack] = useState("");
   const [hover, setHover] = useState(null);
   const [prev, setPrev] = useState(null);
-
+  //geting user data from session storage
   const userInfo = sessionStorage.getItem("userInfo");
-
+  //Workong of next button
   const nextQuestion = async () => {
     if (ratingPoint !== 0) {
       let rating = {
@@ -26,20 +25,19 @@ const Rating = () => {
         userInfo: userInfo,
       };
 
-     try {
-     
-      const { data } = await addRating(rating)
+      try {
+        const { data } = await addRating(rating);
 
-      if (data.modifiedCount === 1) {
-        setRatingPoint(0);
-        setCurrentQuestion(currentQuestion + 1);
-        setPrev(1);
-      }else{
-        console.log("data is not modified")
+        if (data.modifiedCount === 1) {
+          setRatingPoint(0);
+          setCurrentQuestion(currentQuestion + 1);
+          setPrev(1);
+        } else {
+          console.log("data is not modified");
+        }
+      } catch (error) {
+        console.log(error);
       }
-     } catch (error) {
-      console.log(error);
-     }
     } else {
       swal({
         title: "Do you want to skip?",
@@ -61,11 +59,12 @@ const Rating = () => {
       });
     }
   };
+  //working of prev button
   const prevQuestion = () => {
     if (currentQuestion > 0 && prev == null)
       setCurrentQuestion(currentQuestion - 1);
   };
-
+  //working of submit button
   const handleSubmit = async () => {
     if (feedBack !== "") {
       let rating = {
@@ -73,13 +72,13 @@ const Rating = () => {
         rating: feedBack,
         userInfo: userInfo,
       };
-     try {
-       await addRating(rating)
+      try {
+        await addRating(rating);
 
-      setRating("endScreen");
-     } catch (error) {
-      console.log(error);
-     }
+        setRating("endScreen");
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       swal("Enter feeback to finish..!", {
         color: "warning",
@@ -89,9 +88,13 @@ const Rating = () => {
   return (
     <div className="Rating">
       <div className="badge">
-      <h3 style={{color:"orangered"}}>{currentQuestion+1}/{Questions.length}</h3>
+        <h3 style={{ color: "orangered" }}>
+          {currentQuestion + 1}/{Questions.length}
+        </h3>
       </div>
-      <h2 className="Question">{currentQuestion+1}.  {Questions[currentQuestion].prompt}...?</h2>
+      <h2 className="Question">
+        {currentQuestion + 1}. {Questions[currentQuestion].prompt}...?
+      </h2>
 
       {Questions[currentQuestion].Scale ? (
         <>
@@ -148,15 +151,16 @@ const Rating = () => {
             type="text"
             onChange={(e) => setFeedBack(e.target.value)}
           />
-         <div className="nav-button">
-         {prev===null && 
-           <button className="button n-btn" onClick={prevQuestion}>
+          <div className="nav-button">
+            {prev === null && (
+              <button className="button n-btn" onClick={prevQuestion}>
                 Prev Question
-              </button> }
-          <button className="button s-btn" onClick={handleSubmit}>
-            Submit
-          </button>
-         </div>
+              </button>
+            )}
+            <button className="button s-btn" onClick={handleSubmit}>
+              Submit
+            </button>
+          </div>
         </div>
       )}
     </div>
