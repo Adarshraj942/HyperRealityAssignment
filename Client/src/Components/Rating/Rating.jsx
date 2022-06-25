@@ -6,6 +6,7 @@ import "./Rating.css";
 import swal from "sweetalert";
 
 import axios from "axios";
+import { addRating } from "../../Api/RatingRequest";
 const Rating = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [ratingPoint, setRatingPoint] = useState(0);
@@ -26,13 +27,15 @@ const Rating = () => {
       };
 
      try {
-      console.log(rating)
-      const { data } = await axios.put("http://localhost:5000/rating", rating);
+     
+      const { data } = await addRating(rating)
 
       if (data.modifiedCount === 1) {
         setRatingPoint(0);
         setCurrentQuestion(currentQuestion + 1);
         setPrev(1);
+      }else{
+        console.log("data is not modified")
       }
      } catch (error) {
       console.log(error);
@@ -71,7 +74,7 @@ const Rating = () => {
         userInfo: userInfo,
       };
      try {
-       await axios.put("http://localhost:5000/rating", rating);
+       await addRating(rating)
 
       setRating("endScreen");
      } catch (error) {
@@ -145,9 +148,15 @@ const Rating = () => {
             type="text"
             onChange={(e) => setFeedBack(e.target.value)}
           />
+         <div className="nav-button">
+         {prev===null && 
+           <button className="button n-btn" onClick={prevQuestion}>
+                Prev Question
+              </button> }
           <button className="button s-btn" onClick={handleSubmit}>
             Submit
           </button>
+         </div>
         </div>
       )}
     </div>

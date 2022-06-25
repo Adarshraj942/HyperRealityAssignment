@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { RatingContext } from "../../Helpers/Contexts";
 import axios from "axios";
 import "./MainMenu.css";
+import { getQuestionsFromServer } from "../../Api/QuestionRequest";
+import { createRating } from "../../Api/RatingRequest";
 const MainMenu = () => {
   const { rating, setRating } = useContext(RatingContext);
   const { Questions, setQNA } = useContext(RatingContext);
@@ -14,7 +16,7 @@ const MainMenu = () => {
   useEffect(() => {
     const getQuestions = async () => {
     try {
-      const {data} = await axios.get("http://localhost:5000/questions");
+      const {data} = await getQuestionsFromServer()
        setQNA(data);
       
     } catch (error) {
@@ -28,9 +30,7 @@ const MainMenu = () => {
       sessionStorage.setItem("userInfo", user);
       const addRatiing = async () => {
         try {
-          const { data } = await axios.post("http://localhost:5000/rating/", {
-            user,
-          });
+           await createRating({user});
           
         } catch (error) {
           console.log(error);
