@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { RatingContext } from "../../Helpers/Contexts";
+import Thanks from "../../Image/thanks.png.png"
 const EndMenu = () => {
   //context
   const { rating, setRating } = useContext(RatingContext);
@@ -19,7 +20,7 @@ const EndMenu = () => {
     <div>
       <img
         style={{ width: "250px", height: "250px" }}
-        src="https://www.pikpng.com/pngl/b/245-2455199_75-off-png-transparent-images-thank-you-icon.png"
+        src={Thanks}
         alt=""
       />
     </div>
